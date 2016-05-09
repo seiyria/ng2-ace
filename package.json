@@ -1,6 +1,6 @@
 {
   "name": "ng2-ace",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An ace editor directive for angular2.",
   "main": "index.js",
   "scripts": {
@@ -29,6 +29,6 @@
     "brace": "^0.8.0"
   },
   "peerDependencies": {
-    "angular2": "2.0.0-beta.16"
+    "angular2": "2.0.0-rc.1"
   }
 }

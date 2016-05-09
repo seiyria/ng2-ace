@@ -1,5 +1,5 @@
 
-import { Directive, ElementRef, EventEmitter } from 'angular2/core';
+import { Directive, ElementRef, EventEmitter } from '@angular/core';
 import ace from 'brace';
 
 @Directive({
