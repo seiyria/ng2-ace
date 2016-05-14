@@ -16,6 +16,7 @@ import { AceEditorDirective } from 'ng2-ace';
   template: `
   <div ace-editor
        [text]="text"
+       [mode]="'sql'"
        (textChanged)="onChange($event)"
        style="display:block; height: 80vh; width:100%"></div>
   `
@@ -33,4 +34,4 @@ Important pieces to note in the HTML template: `[ace-editor]` attribute, `[text]
 
 # TODO
 
-Support themes and languages as an input.
+Support themes as an input.
