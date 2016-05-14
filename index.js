@@ -4,12 +4,17 @@ import ace from 'brace';
 
 @Directive({
   selector: '[ace-editor]',
-  inputs: ['text', 'mode'],
+  inputs: ['text', 'mode', 'theme'],
   outputs: ['textChanged']
 })
 export class AceEditorDirective {
   static get parameters() {
     return [[ElementRef]];
+  }
+
+  set theme(value) {
+    this._theme = value;
+    this.editor.setTheme(`ace/theme/${value}`);
   }
 
   set mode(value) {

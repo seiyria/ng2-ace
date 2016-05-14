@@ -11,12 +11,16 @@ import { Component } from 'angular2/core';
 
 import { AceEditorDirective } from 'ng2-ace';
 
+import 'brace/theme/clouds';
+import 'brace/mode/sql';
+
 @Component({
   directives: [AceEditorDirective],
   template: `
   <div ace-editor
        [text]="text"
        [mode]="'sql'"
+       [theme]="'clouds'"
        (textChanged)="onChange($event)"
        style="display:block; height: 80vh; width:100%"></div>
   `
@@ -31,7 +35,3 @@ export class MyComponent {
 }
 ```
 Important pieces to note in the HTML template: `[ace-editor]` attribute, `[text]` input, `(textChanged)` output. As per Ace, you must also make it a `display: block;` and give it a width and height.
-
-# TODO
-
-Support themes as an input.
