@@ -21,6 +21,7 @@ import 'brace/mode/sql';
        [text]="text"
        [mode]="'sql'"
        [theme]="'clouds'"
+       [options]="options"
        (textChanged)="onChange($event)"
        style="display:block; height: 80vh; width:100%"></div>
   `
@@ -28,10 +29,11 @@ import 'brace/mode/sql';
 export class MyComponent {
   constructor() {
     this.text = 'test';
+    this.options = { printMargin: false };
     this.onChange = (data) => {
       console.log(data);
     }
   }
 }
 ```
-Important pieces to note in the HTML template: `[ace-editor]` attribute, `[text]` input, `(textChanged)` output. As per Ace, you must also make it a `display: block;` and give it a width and height.
+Important pieces to note in the HTML template: `[ace-editor]` attribute, `[text]`, `[theme]`, `[mode]`, `[options]` inputs, `(textChanged)` output. As per Ace, you must also make it a `display: block;` and give it a width and height.
