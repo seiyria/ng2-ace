@@ -1,6 +1,6 @@
 {
   "name": "ng2-ace",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "An ace editor directive for angular2.",
   "main": "index.js",
   "scripts": {
@@ -24,11 +24,19 @@
   "bugs": {
     "url": "https://github.com/seiyria/ng2-ace/issues"
   },
+  "scripts": {
+    "compile": "babel src/index.js -o index.js --plugins transform-decorators-legacy,transform-class-properties --presents es2015"
+  },
   "homepage": "https://github.com/seiyria/ng2-ace#readme",
   "dependencies": {
     "brace": "^0.8.0"
   },
   "peerDependencies": {
     "@angular/core": "2.0.0-rc.1"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.9.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.9.0"
   }
 }

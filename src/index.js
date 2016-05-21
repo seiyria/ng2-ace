@@ -1,13 +1,13 @@
-var _dec, _class;
 
 import { Directive, ElementRef, EventEmitter } from '@angular/core';
 import ace from 'brace';
 
-export let AceEditorDirective = (_dec = Directive({
+@Directive({
   selector: '[ace-editor]',
   inputs: ['text', 'mode', 'theme', 'options'],
   outputs: ['textChanged']
-}), _dec(_class = class AceEditorDirective {
+})
+export class AceEditorDirective {
   static get parameters() {
     return [[ElementRef]];
   }
@@ -18,16 +18,16 @@ export let AceEditorDirective = (_dec = Directive({
 
   set theme(value) {
     this._theme = value;
-    this.editor.setTheme(`ace/theme/${ value }`);
+    this.editor.setTheme(`ace/theme/${value}`);
   }
 
   set mode(value) {
     this._mode = value;
-    this.editor.getSession().setMode(`ace/mode/${ value }`);
+    this.editor.getSession().setMode(`ace/mode/${value}`);
   }
 
   set text(value) {
-    if (value === this.oldVal) return;
+    if(value === this.oldVal) return;
     this.editor.setValue(value);
     this.editor.clearSelection();
     this.editor.focus();
@@ -43,11 +43,11 @@ export let AceEditorDirective = (_dec = Directive({
 
     this.editor.on('change', () => {
       const newVal = this.editor.getValue();
-      if (newVal === this.oldVal) return;
-      if (typeof this.oldVal !== 'undefined') {
+      if(newVal === this.oldVal) return;
+      if(typeof this.oldVal !== 'undefined') {
         this.textChanged.next(newVal);
       }
       this.oldVal = newVal;
     });
   }
-}) || _class);
+}
