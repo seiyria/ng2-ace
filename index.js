@@ -1,53 +1,82 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.AceEditorDirective = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _dec, _class;
 
-import { Directive, ElementRef, EventEmitter } from '@angular/core';
-import ace from 'brace';
+var _core = require('@angular/core');
 
-export let AceEditorDirective = (_dec = Directive({
+var _brace = require('brace');
+
+var _brace2 = _interopRequireDefault(_brace);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var AceEditorDirective = exports.AceEditorDirective = (_dec = (0, _core.Directive)({
   selector: '[ace-editor]',
   inputs: ['text', 'mode', 'theme', 'options'],
   outputs: ['textChanged']
-}), _dec(_class = class AceEditorDirective {
-  static get parameters() {
-    return [[ElementRef]];
-  }
+}), _dec(_class = function () {
+  _createClass(AceEditorDirective, [{
+    key: 'options',
+    set: function set(value) {
+      this.editor.setOptions(value || {});
+    }
+  }, {
+    key: 'theme',
+    set: function set(value) {
+      this._theme = value;
+      this.editor.setTheme('ace/theme/' + value);
+    }
+  }, {
+    key: 'mode',
+    set: function set(value) {
+      this._mode = value;
+      this.editor.getSession().setMode('ace/mode/' + value);
+    }
+  }, {
+    key: 'text',
+    set: function set(value) {
+      if (value === this.oldVal) return;
+      this.editor.setValue(value);
+      this.editor.clearSelection();
+      this.editor.focus();
+    }
+  }], [{
+    key: 'parameters',
+    get: function get() {
+      return [[_core.ElementRef]];
+    }
+  }]);
 
-  set options(value) {
-    this.editor.setOptions(value || {});
-  }
+  function AceEditorDirective(elementRef) {
+    var _this = this;
 
-  set theme(value) {
-    this._theme = value;
-    this.editor.setTheme(`ace/theme/${ value }`);
-  }
+    _classCallCheck(this, AceEditorDirective);
 
-  set mode(value) {
-    this._mode = value;
-    this.editor.getSession().setMode(`ace/mode/${ value }`);
-  }
+    this.textChanged = new _core.EventEmitter();
 
-  set text(value) {
-    if (value === this.oldVal) return;
-    this.editor.setValue(value);
-    this.editor.clearSelection();
-    this.editor.focus();
-  }
-
-  constructor(elementRef) {
-    this.textChanged = new EventEmitter();
-
-    const el = elementRef.nativeElement;
+    var el = elementRef.nativeElement;
     el.classList.add('editor');
 
-    this.editor = ace.edit(el);
+    this.editor = _brace2.default.edit(el);
 
-    this.editor.on('change', () => {
-      const newVal = this.editor.getValue();
-      if (newVal === this.oldVal) return;
-      if (typeof this.oldVal !== 'undefined') {
-        this.textChanged.next(newVal);
+    this.editor.on('change', function () {
+      var newVal = _this.editor.getValue();
+      if (newVal === _this.oldVal) return;
+      if (typeof _this.oldVal !== 'undefined') {
+        _this.textChanged.next(newVal);
       }
-      this.oldVal = newVal;
+      _this.oldVal = newVal;
     });
   }
-}) || _class);
+
+  return AceEditorDirective;
+}()) || _class);
