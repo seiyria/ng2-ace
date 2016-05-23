@@ -22,6 +22,7 @@ import 'brace/mode/sql';
        [mode]="'sql'"
        [theme]="'clouds'"
        [options]="options"
+       [readOnly]="false"
        (textChanged)="onChange($event)"
        style="display:block; height: 80vh; width:100%"></div>
   `
@@ -36,4 +37,4 @@ export class MyComponent {
   }
 }
 ```
-Important pieces to note in the HTML template: `[ace-editor]` attribute, `[text]`, `[theme]`, `[mode]`, `[options]` inputs, `(textChanged)` output. As per Ace, you must also make it a `display: block;` and give it a width and height.
+Important pieces to note in the HTML template: `[ace-editor]` attribute, `[text]`, `[theme]`, `[mode]`, `[readOnly]`, `[options]` inputs, `(textChanged)` output. As per Ace, you must also make it a `display: block;` and give it a width and height.

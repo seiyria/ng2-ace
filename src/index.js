@@ -4,7 +4,7 @@ import ace from 'brace';
 
 @Directive({
   selector: '[ace-editor]',
-  inputs: ['text', 'mode', 'theme', 'options'],
+  inputs: ['text', 'mode', 'theme', 'readOnly', 'options'],
   outputs: ['textChanged']
 })
 export class AceEditorDirective {
@@ -14,6 +14,12 @@ export class AceEditorDirective {
 
   set options(value) {
     this.editor.setOptions(value || {});
+  }
+
+  set readOnly(value) {
+    console.log(value);
+    this._readOnly = value;
+    this.editor.setReadOnly(value);
   }
 
   set theme(value) {

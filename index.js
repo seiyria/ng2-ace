@@ -21,13 +21,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var AceEditorDirective = exports.AceEditorDirective = (_dec = (0, _core.Directive)({
   selector: '[ace-editor]',
-  inputs: ['text', 'mode', 'theme', 'options'],
+  inputs: ['text', 'mode', 'theme', 'readOnly', 'options'],
   outputs: ['textChanged']
 }), _dec(_class = function () {
   _createClass(AceEditorDirective, [{
     key: 'options',
     set: function set(value) {
       this.editor.setOptions(value || {});
+    }
+  }, {
+    key: 'readOnly',
+    set: function set(value) {
+      console.log(value);
+      this._readOnly = value;
+      this.editor.setReadOnly(value);
     }
   }, {
     key: 'theme',
