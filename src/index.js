@@ -17,7 +17,6 @@ export class AceEditorDirective {
   }
 
   set readOnly(value) {
-    console.log(value);
     this._readOnly = value;
     this.editor.setReadOnly(value);
   }

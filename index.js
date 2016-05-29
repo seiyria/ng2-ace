@@ -32,7 +32,6 @@ var AceEditorDirective = exports.AceEditorDirective = (_dec = (0, _core.Directiv
   }, {
     key: 'readOnly',
     set: function set(value) {
-      console.log(value);
       this._readOnly = value;
       this.editor.setReadOnly(value);
     }
