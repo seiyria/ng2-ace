@@ -5,7 +5,7 @@ import ace from 'brace';
 @Directive({
   selector: '[ace-editor]',
   inputs: ['text', 'mode', 'theme', 'readOnly', 'options'],
-  outputs: ['textChanged']
+  outputs: ['textChanged', 'editorRef']
 })
 export class AceEditorDirective {
   static get parameters() {
@@ -40,11 +40,16 @@ export class AceEditorDirective {
 
   constructor(elementRef) {
     this.textChanged = new EventEmitter();
+    this.editorRef = new EventEmitter();
 
     const el = elementRef.nativeElement;
     el.classList.add('editor');
 
     this.editor = ace.edit(el);
+
+    setTimeout(() => {
+      this.editorRef.next(this.editor);
+    });
 
     this.editor.on('change', () => {
       const newVal = this.editor.getValue();
