@@ -1,6 +1,6 @@
 {
   "name": "ng2-ace",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "An ace editor directive for angular2.",
   "main": "index.js",
   "scripts": {
@@ -32,7 +32,7 @@
     "brace": "^0.8.0"
   },
   "peerDependencies": {
-    "@angular/core": "2.0.0-rc.1"
+    "@angular/core": "^2.0.0-rc.5"
   },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.9.0",
