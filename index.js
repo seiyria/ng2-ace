@@ -22,7 +22,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var AceEditorDirective = exports.AceEditorDirective = (_dec = (0, _core.Directive)({
   selector: '[ace-editor]',
   inputs: ['text', 'mode', 'theme', 'readOnly', 'options'],
-  outputs: ['textChanged']
+  outputs: ['textChanged', 'editorRef']
 }), _dec(_class = function () {
   _createClass(AceEditorDirective, [{
     key: 'options',
@@ -68,11 +68,16 @@ var AceEditorDirective = exports.AceEditorDirective = (_dec = (0, _core.Directiv
     _classCallCheck(this, AceEditorDirective);
 
     this.textChanged = new _core.EventEmitter();
+    this.editorRef = new _core.EventEmitter();
 
     var el = elementRef.nativeElement;
     el.classList.add('editor');
 
     this.editor = _brace2.default.edit(el);
+
+    setTimeout(function () {
+      _this.editorRef.next(_this.editor);
+    });
 
     this.editor.on('change', function () {
       var newVal = _this.editor.getValue();

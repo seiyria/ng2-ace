@@ -1,6 +1,6 @@
 {
   "name": "ng2-ace",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "An ace editor directive for angular2.",
   "main": "index.js",
   "scripts": {
